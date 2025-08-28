@@ -4,7 +4,7 @@ import { GameWrapper, Card, Header, Title, Status, WinCounter, Board, Cell, Mark
 export function GameContainer() {
 
   const [board, setBoard]= useState(Array(9).fill(null));
-  const [next, setNext] = useState('x');
+  const [turn, setTurn] = useState('x');
   const [winner, setWinner] = useState(null);
   const [winCounter, setWinCounter] = useState({
     'x': 0,
@@ -15,12 +15,12 @@ export function GameContainer() {
   const [finished, setFinished] = useState(false);
 
   const onPlay = (id) => {
-    const nextCondition = next === "x" ? 'o' : 'x'
+    const nextTurn = turn === 'x' ? 'o' : 'x'
     setBoard(( )=> {
       const newBoard = [...board];
       
-      newBoard[id] = nextCondition;
-      setNext(nextCondition)
+      newBoard[id] = turn;
+      setTurn(nextTurn)
       return newBoard
     })
   
@@ -28,7 +28,7 @@ export function GameContainer() {
 
   const onReset = () => {
     setBoard(Array(9).fill(null));
-    setNext('x');
+    setTurn('x');
     setWinner(null);
     setFinished(false);
   }
